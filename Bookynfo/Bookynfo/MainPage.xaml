@@ -7,7 +7,7 @@
 
   
     <ListView x:Name="BookList"
-              SeparatorColor="LightGray"
+              SeparatorColor="Black"
               HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               Refreshing="BookList_Refreshing"
@@ -18,7 +18,7 @@
                     <StackLayout Orientation="Horizontal" Padding="5">
                         <StackLayout HorizontalOptions="StartAndExpand">
                             <Label Text="{Binding title}" VerticalTextAlignment="Start" TextColor="Black"/>
-                            <Label Text="{Binding smallthumbnail}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Image Source="{Binding smallthumbnail}" />
                             <Label Text="{Binding category}" VerticalTextAlignment="Start" TextColor="Gray"/>
                             <Label Text="{Binding PDFAvailable}" VerticalTextAlignment="Start" TextColor="Gray"/>
                             <Label Text="{Binding previewLink}" VerticalTextAlignment="Start" TextColor="Gray"/>
@@ -31,11 +31,4 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-    <!--<StackLayout>
-        --><!-- Place new controls here --><!--
-    	<Label Text="Welcome to Bookyinfo!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>-->
-
-</ContentPage>
+   </ContentPage>

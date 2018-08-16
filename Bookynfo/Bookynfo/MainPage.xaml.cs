@@ -10,21 +10,21 @@ using Bookynfo.LocalData;
 
 namespace Bookynfo
 {
-	public partial class MainPage : ContentPage
-	{
+    public partial class MainPage : ContentPage
+    {
         private ObservableCollection<FirstBookList_Class> _listOfISBN = new ObservableCollection<FirstBookList_Class> { };
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             await BookFetching();
         }
-              
+
 
         public MainPage()
-		{
-			InitializeComponent();
-		}
-        
+        {
+            InitializeComponent();
+        }
+
         private async void BookList_Refreshing(object sender, EventArgs e)
         {
             await BookFetching();
@@ -47,7 +47,7 @@ namespace Bookynfo
         private async Task BookFetching()
         {
             foreach (var isbn in ISBN_List_Class.GetISBN_List())
-                
+
             {
                 FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(Convert.ToInt64(isbn));
                 _listOfISBN.Clear();
@@ -94,9 +94,9 @@ namespace Bookynfo
                         new FirstBookList_Class
                         {
                             smallthumbnail = Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
-                            
+
                             category = string.Join(" ", item.volumeInfo.categories),
-                           
+
                             PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
                             title = Convert.ToString(item.volumeInfo.title),
                             previewLink = Convert.ToString(item.volumeInfo.previewLink)
@@ -106,9 +106,10 @@ namespace Bookynfo
                 }
 
 
-            }
 
-            BookList.ItemsSource = _listOfISBN;
+
+                BookList.ItemsSource = _listOfISBN;
+            }
         }
     }
 }
