@@ -2,13 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Bookynfo"
-             x:Class="Bookynfo.MainPage" NavigationPage.HasNavigationBar="False">
+             x:Class="Bookynfo.MainPage" NavigationPage.HasNavigationBar="False"
+             Title="Bookynfo">
 
-    <StackLayout>
-        <!-- Place new controls here -->
+  
+    <ListView x:Name="BookList"
+              SeparatorColor="LightGray"
+              HasUnevenRows="True"
+              IsPullToRefreshEnabled="True"
+              Refreshing="BookList_Refreshing"
+              ItemSelected="BookList_ItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding title}" VerticalTextAlignment="Start" TextColor="Black"/>
+                            <Label Text="{Binding smallthumbnail}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Label Text="{Binding category}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Label Text="{Binding PDFAvailable}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Label Text="{Binding previewLink}" VerticalTextAlignment="Start" TextColor="Gray"/>
+
+                            <!--<Label Text="{Binding id}" VerticalTextAlignment="Start" TextColor="Gray"/>-->
+                        </StackLayout>
+                        <!--<Label Text="{Binding href}" VerticalTextAlignment="Start" TextColor="DarkSlateGray"/>-->
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    <!--<StackLayout>
+        --><!-- Place new controls here --><!--
     	<Label Text="Welcome to Bookyinfo!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    </StackLayout>-->
 
 </ContentPage>
