@@ -99,7 +99,8 @@ namespace Bookynfo
 
                             PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
                             title = Convert.ToString(item.volumeInfo.title),
-                            previewLink = Convert.ToString(item.volumeInfo.previewLink)
+                            previewLink = Convert.ToString(item.volumeInfo.previewLink),
+                            ID= item.id
                         }
                         );
                     //console.writeline("item links : " + item.volumeinfo.imagelinks.smallthumbnail);

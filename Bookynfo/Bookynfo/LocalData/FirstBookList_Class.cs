@@ -11,6 +11,7 @@ namespace Bookynfo.LocalData
         public string previewLink { get; set; }
         public bool PDFAvailable { get; set; }
         public string category { get; set; }
+        public string ID { get; set; }
 
     }
 }
