@@ -37,8 +37,8 @@ namespace Bookynfo
             if (e.SelectedItem == null)
                 return;
 
-            var selectedRequest = e.SelectedItem as FirstScreen_class;
-            //App.currentSelectedSurveyID = selectedRequest.id;
+            var selectedBookNumber = e.SelectedItem as FirstBookList_Class;
+            App.SelectedBookNumber = selectedBookNumber.ISBN_number;
             await Navigation.PushAsync(new Detail());
             BookList.SelectedItem = null;
         }
@@ -46,11 +46,13 @@ namespace Bookynfo
 
         private async Task BookFetching()
         {
+            _listOfISBN.Clear();
+
             foreach (var isbn in ISBN_List_Class.GetISBN_List())
 
             {
                 FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(Convert.ToInt64(isbn));
-                _listOfISBN.Clear();
+                
                 //Console.WriteLine("Item Count : " + listOfBooks.items.Count());
                 Console.WriteLine("Item ID : " + listOfBooks.items[0].id);
                 //_listOfISBN.Add(
@@ -86,21 +88,43 @@ namespace Bookynfo
                 //        );
 
 
-
-
                 foreach (var item in listOfBooks.items)
                 {
                     _listOfISBN.Add(
                         new FirstBookList_Class
                         {
-                            smallthumbnail = Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
 
-                            category = string.Join(" ", item.volumeInfo.categories),
+                            smallthumbnail = (item.volumeInfo.imageLinks.smallThumbnail == null) ?
+                                       "Null value" : Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
 
-                            PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
-                            title = Convert.ToString(item.volumeInfo.title),
-                            previewLink = Convert.ToString(item.volumeInfo.previewLink),
-                            ID= item.id
+                            category = (item.volumeInfo.categories == null) ?
+                                        "cant access" : string.Join(" ", item.volumeInfo.categories),
+
+                            PDFAvailable = (item.accessInfo.pdf.isAvailable == false) ?
+                                        false : Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
+
+                            title = (item.volumeInfo.title == null) ?
+                                        "not available" : Convert.ToString(item.volumeInfo.title),
+
+                            previewLink = (item.volumeInfo.previewLink == null) ?
+                                        "not available" : Convert.ToString(item.volumeInfo.previewLink),
+                            ID = item.id,
+                            ISBN_number= Convert.ToInt64(isbn)
+
+
+                //foreach (var item in listOfBooks.items)
+                //{
+                //    _listOfISBN.Add(
+                //        new FirstBookList_Class
+                //        {
+                //            smallthumbnail = Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
+
+                //            category = string.Join(" ", item.volumeInfo.categories),
+
+                //            PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
+                //            title = Convert.ToString(item.volumeInfo.title),
+                //            previewLink = Convert.ToString(item.volumeInfo.previewLink),
+                //            ID= item.id
                         }
                         );
                     //console.writeline("item links : " + item.volumeinfo.imagelinks.smallthumbnail);

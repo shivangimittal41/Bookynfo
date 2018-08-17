@@ -5,31 +5,40 @@
              x:Class="Bookynfo.MainPage" NavigationPage.HasNavigationBar="False"
              Title="Bookynfo">
 
-  
-    <ListView x:Name="BookList"
+
+    
+        <ListView x:Name="BookList"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
               SeparatorColor="Black"
               HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               Refreshing="BookList_Refreshing"
               ItemSelected="BookList_ItemSelected">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal" Padding="5">
-                        <StackLayout HorizontalOptions="StartAndExpand">
-                            <Label Text="{Binding title}" VerticalTextAlignment="Start" TextColor="Black"/>
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ViewCell>
+                    <StackLayout Orientation="Vertical" Padding="5">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding title}" VerticalTextAlignment="Start" TextColor="Black" />
                             <Image Source="{Binding smallthumbnail}" />
-                            <Label Text="{Binding category}" VerticalTextAlignment="Start" TextColor="Gray"/>
-                            <Label Text="{Binding PDFAvailable}" VerticalTextAlignment="Start" TextColor="Gray"/>
-                            <Label Text="{Binding previewLink}" VerticalTextAlignment="Start" TextColor="Gray"/>
-                            <Label Text="{Binding ID}" TextColor="Black"/>
-
-                            <!--<Label Text="{Binding id}" VerticalTextAlignment="Start" TextColor="Gray"/>-->
+                            <Label Text="{Binding category}" VerticalTextAlignment="Start" TextColor="Black"/>
+                            <Label Text="{Binding pdfavailable}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Label Text="{Binding previewlink}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Label Text="{Binding id}" TextColor="Black"/>
                         </StackLayout>
-                        <!--<Label Text="{Binding href}" VerticalTextAlignment="Start" TextColor="DarkSlateGray"/>-->
+                       
+                        <!--<Label Text="hello" />
+                            <Label Text="hello2"/>
+                            <Label Text="hello3"/>
+                            <Label Text="hello"/>-->
+
+                        <!--<Label Text="{Binding id}" VerticalTextAlignment="Start" TextColor="Gray"/>-->
+                        <!--</StackLayout>-->
                     </StackLayout>
                 </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+  
    </ContentPage>

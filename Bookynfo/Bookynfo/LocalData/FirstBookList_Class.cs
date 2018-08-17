@@ -12,6 +12,7 @@ namespace Bookynfo.LocalData
         public bool PDFAvailable { get; set; }
         public string category { get; set; }
         public string ID { get; set; }
+        public long ISBN_number { get; set; }
 
     }
 }

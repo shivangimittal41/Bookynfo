@@ -12,10 +12,13 @@ namespace Bookynfo
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class WelcomeScreen : ContentPage
 	{
-		public WelcomeScreen ()
+            
+
+        public WelcomeScreen ()
 		{
 			InitializeComponent ();
 		}
+
 
         private void OnClicked(object sender, EventArgs e)
         {
@@ -24,5 +27,7 @@ namespace Bookynfo
             //this.Navigate(new MainPage());
             Navigation.PushAsync(new MainPage());
         }
+
+
     }
 }
