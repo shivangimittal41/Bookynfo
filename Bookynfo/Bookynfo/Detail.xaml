@@ -4,8 +4,24 @@
              x:Class="Bookynfo.Detail">
     <ContentPage.Content>
         <StackLayout>
-            
+
+            <Image x:Name="BookImage"/>
             <Label x:Name="BookTitle"/>
+            <Button x:Name="DL"/>
+            <Label x:Name="BookDescription"/>
+            <Label x:Name="BookaverageRating"/>
+            <Label x:Name="BookpageCount"/>
+            <Label x:Name="PDFavailable"/>
+            <Label x:Name="Bookid"/>
+            <Label x:Name="BookPDFavailable"/>
+            <Label x:Name="Bookauhtor"/>
+            <Label x:Name="Booklanguage"/>
+
+
+
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -18,23 +18,23 @@
             <ListView.ItemTemplate >
                 <DataTemplate >
                     <ViewCell>
-                    <StackLayout Orientation="Vertical" Padding="5">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding title}" VerticalTextAlignment="Start" TextColor="Black" />
-                            <Image Source="{Binding smallthumbnail}" />
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding title}" VerticalTextAlignment="Start" 
+                                   HorizontalOptions="StartAndExpand" TextColor="Black" />
+                            <Image Source="{Binding smallthumbnail}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text=" " VerticalTextAlignment="Start" TextColor="Black" />
                             <Label Text="{Binding category}" VerticalTextAlignment="Start" TextColor="Black"/>
-                            <Label Text="{Binding pdfavailable}" VerticalTextAlignment="Start" TextColor="Gray"/>
-                            <Label Text="{Binding previewlink}" VerticalTextAlignment="Start" TextColor="Gray"/>
-                            <Label Text="{Binding id}" TextColor="Black"/>
+                            <!--<Label Text="{Binding textSnippet}" TextColor="Black"/>-->
+
+                            <Label Text="{Binding PDFAvailable}" VerticalTextAlignment="Start" TextColor="Gray"/>
+                            <Label Text="{Binding ISBN_number}" VerticalTextAlignment="Start" TextColor="Black"/>
+                            <Label Text="{Binding previewLink}" VerticalTextAlignment="Start" TextColor="Gray" />
+                            <Label Text="{Binding ID}" TextColor="Black"/>
                         </StackLayout>
                        
-                        <!--<Label Text="hello" />
-                            <Label Text="hello2"/>
-                            <Label Text="hello3"/>
-                            <Label Text="hello"/>-->
-
-                        <!--<Label Text="{Binding id}" VerticalTextAlignment="Start" TextColor="Gray"/>-->
-                        <!--</StackLayout>-->
                     </StackLayout>
                 </ViewCell>
                 </DataTemplate>

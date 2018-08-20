@@ -8,6 +8,7 @@ using Bookynfo.Info;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Bookynfo.LocalData;
+using Bookynfo.Info;
 
 namespace Bookynfo
 {
@@ -36,28 +37,39 @@ namespace Bookynfo
             _DetailsofBook.Clear();
             foreach( var item in detailsOfBooks.items)
             {
-                BookTitle.Text = item.volumeInfo.title;
-                //_DetailsofBook.Add(new DetailsPage_Class
-                //{
-                //    id = currentSelectedID,
-                //    PDFavailable= item.accessInfo.pdf.isAvailable,
-                //    language = item.volumeInfo.language,
-                //    averageRating = item.volumeInfo.averageRating,
-                //    pageCount = item.volumeInfo.pageCount,
-                //    description = item.volumeInfo.description,
-                //    auhtor= String.Join(" ", item.volumeInfo.authors),
-                //    thumbnail= item.volumeInfo.imageLinks.thumbnail
+                BookTitle.Text = (string.IsNullOrEmpty(item.volumeInfo.title) ?
+                    "Not available" : item.volumeInfo.title);
 
-                //});
+                BookImage.Source = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.thumbnail)?
+                    "Not available" : item.volumeInfo.imageLinks.thumbnail);
 
+                
+                Bookid.Text = (string.IsNullOrEmpty(Convert.ToString(App.SelectedBookNumber)) ?
+                    "Not available" : Convert.ToString(App.SelectedBookNumber));
 
+                PDFavailable.Text = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable)) ?
+                    "Not available" : Convert.ToString(item.accessInfo.pdf.isAvailable)); 
 
+                Booklanguage.Text = (string.IsNullOrEmpty(item.volumeInfo.language) ?
+                    "Not available" : item.volumeInfo.language); 
 
+                BookaverageRating.Text = (string.IsNullOrEmpty(Convert.ToString(item.volumeInfo.averageRating)) ?
+                    "Not available" : Convert.ToString(item.volumeInfo.averageRating));
+               
+                BookpageCount.Text = (string.IsNullOrEmpty(Convert.ToString(item.volumeInfo.pageCount)) ?
+                    "Not available" : Convert.ToString(item.volumeInfo.pageCount));
+               
+                BookDescription.Text = (string.IsNullOrEmpty(item.volumeInfo.description) ?
+                    "Not available" : item.volumeInfo.description);
+               
+                Bookauhtor.Text = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.authors)) ?
+                    "Not available" : String.Join(" ", item.volumeInfo.authors));
+                
 
-                //detailsOfBooks.ItemsSource = _DetailsofBook;
+              
+    }
 
-            }
-
-}
+        }
     }
 }
+ 

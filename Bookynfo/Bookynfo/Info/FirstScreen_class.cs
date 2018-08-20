@@ -54,9 +54,11 @@ namespace Bookynfo.Info
     //[DataContract]
     public class VolumeInfo
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         //[DataMember]
         public string title { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> authors { get; set; }
         //public string publisher { get; set; }
         //public string publishedDate { get; set; }
@@ -66,6 +68,7 @@ namespace Bookynfo.Info
         //public int pageCount { get; set; }
         //public string printType { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> categories { get; set; }
         //public double averageRating { get; set; }
         //public int ratingsCount { get; set; }
@@ -73,9 +76,11 @@ namespace Bookynfo.Info
         //public bool allowAnonLogging { get; set; }
         //public string contentVersion { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ImageLinks imageLinks { get; set; }
         //public string language { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string previewLink { get; set; }
         //public string infoLink { get; set; }
         //public string canonicalVolumeLink { get; set; }
@@ -97,6 +102,7 @@ namespace Bookynfo.Info
     public class Pdf
     {
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool isAvailable { get; set; }
     }
     //[DataContract]
@@ -111,22 +117,26 @@ namespace Bookynfo.Info
         //    public Epub epub { get; set; }
 
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Pdf pdf { get; set; }
     //    public string webReaderLink { get; set; }
     //    public string accessViewStatus { get; set; }
     //    public bool quoteSharingAllowed { get; set; }
     }
 
-    //public class SearchInfo
-    //{
-    //    public string textSnippet { get; set; }
-    //}
+    public class SearchInfo
+    {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string textSnippet { get; set; }
+    }
     //[DataContract]
     public class Item
     {
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string kind { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id { get; set; }
         //public string etag { get; set; }
         //[DataMember]
@@ -136,17 +146,22 @@ namespace Bookynfo.Info
         //[DataMember]
         public VolumeInfo volumeInfo { get; set; }
         //public SaleInfo saleInfo { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public AccessInfo accessInfo { get; set; }
-        //public SearchInfo searchInfo { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public SearchInfo searchInfo { get; set; }
     }
     //[DataContract]
     public class FirstRootObject
     {
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string kind { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int totalItems { get; set; }
         //[DataMember]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Item> items { get; set; }
     }
 }

@@ -55,38 +55,7 @@ namespace Bookynfo
                 
                 //Console.WriteLine("Item Count : " + listOfBooks.items.Count());
                 Console.WriteLine("Item ID : " + listOfBooks.items[0].id);
-                //_listOfISBN.Add(
-                //    new FirstBookList_Class
-                //    {
-                //        previewLink = "1",
-                //        title = "1",
-                //        category = string.Join(" ", listOfBooks.items[0].volumeInfo.categories),
-                //        PDFAvailable = true,
-                //        smallthumbnail = "1"
-                //    }
-                //    );
-
-                //_listOfISBN.Add(
-                //        new FirstBookList_Class
-                //        {
-
-                //            smallthumbnail = (listOfBooks.items[0].volumeInfo.imageLinks.smallThumbnail == null)?
-                //           "Null value": Convert.ToString(listOfBooks.items[0].volumeInfo.imageLinks.smallThumbnail),
-
-                //            category = (listOfBooks.items[0].volumeInfo.categories == null)?
-                //            "cant access":string.Join(" ", listOfBooks.items[0].volumeInfo.categories),
-
-                //            PDFAvailable = (listOfBooks.items[0].accessInfo.pdf.isAvailable == false)?
-                //            false: Convert.ToBoolean(listOfBooks.items[0].accessInfo.pdf.isAvailable),
-
-                //            title = (listOfBooks.items[0].volumeInfo.title == null)?
-                //            "not available":Convert.ToString(listOfBooks.items[0].volumeInfo.title),
-
-                //            previewLink = (listOfBooks.items[0].volumeInfo.previewLink == null)?
-                //            "not available":Convert.ToString(listOfBooks.items[0].volumeInfo.previewLink)
-                //        }
-                //        );
-
+         
 
                 foreach (var item in listOfBooks.items)
                 {
@@ -94,37 +63,27 @@ namespace Bookynfo
                         new FirstBookList_Class
                         {
 
-                            smallthumbnail = (item.volumeInfo.imageLinks.smallThumbnail == null) ?
+                            smallthumbnail = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.smallThumbnail)) ?
                                        "Null value" : Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
 
-                            category = (item.volumeInfo.categories == null) ?
+                            category = (string.IsNullOrEmpty(string.Join(" ", item.volumeInfo.categories))) ?
                                         "cant access" : string.Join(" ", item.volumeInfo.categories),
 
-                            PDFAvailable = (item.accessInfo.pdf.isAvailable == false) ?
+                            PDFAvailable = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable))) ?
                                         false : Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
 
-                            title = (item.volumeInfo.title == null) ?
+                            title = (string.IsNullOrEmpty(item.volumeInfo.title)) ?
                                         "not available" : Convert.ToString(item.volumeInfo.title),
+                            //textSnippet = (string.IsNullOrEmpty(item.searchInfo.textSnippet)) ?
+                            //                "Not available" : Convert.ToString(item.searchInfo.textSnippet),
 
                             previewLink = (item.volumeInfo.previewLink == null) ?
                                         "not available" : Convert.ToString(item.volumeInfo.previewLink),
                             ID = item.id,
-                            ISBN_number= Convert.ToInt64(isbn)
+                            ISBN_number= Convert.ToInt64(isbn),
+                            //textSnippet= item.searchInfo.textSnippet
 
 
-                //foreach (var item in listOfBooks.items)
-                //{
-                //    _listOfISBN.Add(
-                //        new FirstBookList_Class
-                //        {
-                //            smallthumbnail = Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
-
-                //            category = string.Join(" ", item.volumeInfo.categories),
-
-                //            PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
-                //            title = Convert.ToString(item.volumeInfo.title),
-                //            previewLink = Convert.ToString(item.volumeInfo.previewLink),
-                //            ID= item.id
                         }
                         );
                     //console.writeline("item links : " + item.volumeinfo.imagelinks.smallthumbnail);
@@ -139,3 +98,52 @@ namespace Bookynfo
     }
 }
 
+
+
+
+//_listOfISBN.Add(
+//    new FirstBookList_Class
+//    {
+//        previewLink = "1",
+//        title = "1",
+//        category = string.Join(" ", listOfBooks.items[0].volumeInfo.categories),
+//        PDFAvailable = true,
+//        smallthumbnail = "1"
+//    }
+//    );
+
+//_listOfISBN.Add(
+//        new FirstBookList_Class
+//        {
+
+//            smallthumbnail = (listOfBooks.items[0].volumeInfo.imageLinks.smallThumbnail == null)?
+//           "Null value": Convert.ToString(listOfBooks.items[0].volumeInfo.imageLinks.smallThumbnail),
+
+//            category = (listOfBooks.items[0].volumeInfo.categories == null)?
+//            "cant access":string.Join(" ", listOfBooks.items[0].volumeInfo.categories),
+
+//            PDFAvailable = (listOfBooks.items[0].accessInfo.pdf.isAvailable == false)?
+//            false: Convert.ToBoolean(listOfBooks.items[0].accessInfo.pdf.isAvailable),
+
+//            title = (listOfBooks.items[0].volumeInfo.title == null)?
+//            "not available":Convert.ToString(listOfBooks.items[0].volumeInfo.title),
+
+//            previewLink = (listOfBooks.items[0].volumeInfo.previewLink == null)?
+//            "not available":Convert.ToString(listOfBooks.items[0].volumeInfo.previewLink)
+//        }
+//        );
+
+
+//foreach (var item in listOfBooks.items)
+//{
+//    _listOfISBN.Add(
+//        new FirstBookList_Class
+//        {
+//            smallthumbnail = Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
+
+//            category = string.Join(" ", item.volumeInfo.categories),
+
+//            PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
+//            title = Convert.ToString(item.volumeInfo.title),
+//            previewLink = Convert.ToString(item.volumeInfo.previewLink),
+//            ID= item.id
