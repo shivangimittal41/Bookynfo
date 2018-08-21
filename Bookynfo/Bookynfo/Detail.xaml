@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Bookynfo.Detail">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical">
 
             <Image x:Name="BookImage"/>
             <Label x:Name="BookTitle"/>
@@ -12,7 +12,7 @@
             <Label x:Name="BookaverageRating"/>
             <Label x:Name="BookpageCount"/>
             <Label x:Name="PDFavailable"/>
-            <Label x:Name="Bookid"/>
+            <!--<Label x:Name="Bookid"/>-->
             <Label x:Name="BookPDFavailable"/>
             <Label x:Name="Bookauhtor"/>
             <Label x:Name="Booklanguage"/>

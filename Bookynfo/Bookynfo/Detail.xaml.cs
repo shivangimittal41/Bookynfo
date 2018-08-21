@@ -44,8 +44,8 @@ namespace Bookynfo
                     "Not available" : item.volumeInfo.imageLinks.thumbnail);
 
                 
-                Bookid.Text = (string.IsNullOrEmpty(Convert.ToString(App.SelectedBookNumber)) ?
-                    "Not available" : Convert.ToString(App.SelectedBookNumber));
+                //Bookid.Text = (string.IsNullOrEmpty(Convert.ToString(item.id)) ?
+                //    "Not available" : Convert.ToString(item.id));
 
                 PDFavailable.Text = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable)) ?
                     "Not available" : Convert.ToString(item.accessInfo.pdf.isAvailable)); 
