@@ -3,21 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Bookynfo.Detail">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" Padding="10,5,5,5">
 
-            <Image x:Name="BookImage"/>
-            <Label x:Name="BookTitle"/>
-            <Button x:Name="DL"/>
-            <Label x:Name="BookDescription"/>
-            <Label x:Name="BookaverageRating"/>
-            <Label x:Name="BookpageCount"/>
-            <Label x:Name="PDFavailable"/>
-            <!--<Label x:Name="Bookid"/>-->
-            <Label x:Name="BookPDFavailable"/>
-            <Label x:Name="Bookauhtor"/>
-            <Label x:Name="Booklanguage"/>
-
-
+            <Image x:Name="BookImage" HeightRequest="250" WidthRequest="200"/>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Title: " FontSize="Medium" TextColor="DarkSlateGray"/>
+                <Label x:Name="BookTitle" FontSize="Medium" TextColor="Black" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" >
+                <Label Text="Book Description: " FontSize="Medium" TextColor="DarkSlateGray" />
+                <Label x:Name="BookDescription" FontSize="Medium" TextColor="Black" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Rating : " FontSize="Small" TextColor="DarkSlateGray" />
+                <Label x:Name="BookaverageRating" FontSize="Small" TextColor="Black" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Number of pages: " FontSize="Small" TextColor="DarkSlateGray" />
+                <Label x:Name="BookpageCount" FontSize="Small" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Available in PDF: " FontSize="Small" TextColor="DarkSlateGray" />
+                <Label x:Name="PDFavailable" FontSize="Small" TextColor="Black" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Author(s): " FontSize="Small" TextColor="DarkSlateGray" />
+                <Label x:Name="Bookauhtor" FontSize="Small" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Available in (Language):  " FontSize="Small" TextColor="DarkSlateGray"/>
+                <Label x:Name="Booklanguage" FontSize="Small" TextColor="Black" />
+            </StackLayout>
 
 
 

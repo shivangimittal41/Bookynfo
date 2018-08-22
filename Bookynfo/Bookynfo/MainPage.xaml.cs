@@ -73,10 +73,10 @@ namespace Bookynfo
                                         false : Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
 
                             title = (string.IsNullOrEmpty(item.volumeInfo.title)) ?
-                                        "not available" : Convert.ToString(item.volumeInfo.title),
-                            //textSnippet = (string.IsNullOrEmpty(item.searchInfo.textSnippet)) ?
-                            //                "Not available" : Convert.ToString(item.searchInfo.textSnippet),
-
+                                        "not available" : Convert.ToString(item.volumeInfo.title).Trim(),
+                            textSnippet = (string.IsNullOrEmpty(Convert.ToString(item.searchInfo.textSnippet))) ?
+                                            "Not available" : Convert.ToString(item.searchInfo.textSnippet),
+                            //textSnippet= item.searchInfo.textSnippet,
                             previewLink = (item.volumeInfo.previewLink == null) ?
                                         "not available" : Convert.ToString(item.volumeInfo.previewLink),
                             ID = item.id,

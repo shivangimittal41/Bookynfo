@@ -18,48 +18,63 @@
             <ListView.ItemTemplate >
                 <DataTemplate >
                     <ViewCell>
-                    <StackLayout Orientation="Horizontal" Padding="5">
+                    <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
                        
                             
                         
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" Padding="5,5,5,5">
                            
-                            <Image Source="{Binding smallthumbnail}" HeightRequest="160" WidthRequest="110"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Book ID : " FontSize="Small"/>
-                                <Label Text="{Binding ID}" TextColor="Black" FontSize="Small" />
-                            </StackLayout>
+                            <Image Source="{Binding smallthumbnail}" HeightRequest="170" WidthRequest="120"/>
+                            <Button Command="{Binding previewLink}"
+                               
+                                     Text="Preview Link" TextColor="Black" FontSize="Micro" />
+                           
                             
+                            <!--<StackLayout Orientation="Horizontal">
+
+                                <Label Text="Book ID : " FontSize="Micro" />
+                                <Label Text="{Binding ID}" TextColor="Black" FontSize="Micro" />
+
+
+                            </StackLayout>-->
+
                         </StackLayout>
+                        
                         <StackLayout Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Title : "/>
-                                <Label Text="{Binding title}" VerticalTextAlignment="Start" 
-                                   HorizontalOptions="StartAndExpand" TextColor="Black" />
+                            
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical">
+                                <Label Text="Title : " HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding title}" HorizontalOptions="Start"
+                                   TextColor="Black" HorizontalTextAlignment="Start" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                <Label Text="About: "/>
+                                <Label Text="{Binding textSnippet}"/>
+                                </StackLayout>
                             </StackLayout>
 
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Category: "/>
-                                <Label Text="{Binding category}"  TextColor="Black"/>
+                                <Label Text="Category: " FontSize="Micro" />
+                                <Label Text="{Binding category}"  TextColor="Black" FontSize="Micro"/>
                             </StackLayout>
                             <!--<Label Text="{Binding textSnippet}" TextColor="Black"/>-->
 
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="PDF available"/>
-                                <Label Text="{Binding PDFAvailable}"  TextColor="Gray"/>
+                                <Label Text="PDF available: " FontSize="Micro" />
+                                <Label Text="{Binding PDFAvailable}"  TextColor="Black" FontSize="Micro" />
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="ISBN number" FontSize="Small"/>
-                                <Label Text="{Binding ISBN_number}"  TextColor="Black" FontSize="Small" />
+                                <Label Text="ISBN number" FontSize="Micro"/>
+                                <Label Text="{Binding ISBN_number}"  TextColor="Black" FontSize="Micro" />
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal">
+                            <!--<StackLayout Orientation="Horizontal">
 
-                                <Button CommandParameter="{Binding previewLink}"
-                                     Text="Preview Link" TextColor="Gray" FontSize="Micro" />
-                            </StackLayout>
-                            
+                            </StackLayout>-->
 
-                            
+                       
+                        
+
                         </StackLayout>
                     </StackLayout>
                 </ViewCell>
