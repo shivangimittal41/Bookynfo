@@ -6,7 +6,11 @@
              Title="Bookynfo">
 
 
-    
+
+    <StackLayout>
+        <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged" 
+                   SearchButtonPressed="SearchBar_SearchButtonPressed" IsVisible="True" />
+
         <ListView x:Name="BookList"
                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
@@ -18,19 +22,19 @@
             <ListView.ItemTemplate >
                 <DataTemplate >
                     <ViewCell>
-                    <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
-                       
-                            
-                        
-                        <StackLayout Orientation="Vertical" Padding="5,5,5,5">
-                           
-                            <Image Source="{Binding smallthumbnail}" HeightRequest="170" WidthRequest="120"/>
-                            <Button Command="{Binding previewLink}"
+                        <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+
+
+
+                            <StackLayout Orientation="Vertical" Padding="5,5,5,5">
+
+                                <Image Source="{Binding smallthumbnail}" HeightRequest="170" WidthRequest="120"/>
+                                <Button Command="{Binding previewLink}"
                                
                                      Text="Preview Link" TextColor="Black" FontSize="Micro" />
-                           
-                            
-                            <!--<StackLayout Orientation="Horizontal">
+
+
+                                <!--<StackLayout Orientation="Horizontal">
 
                                 <Label Text="Book ID : " FontSize="Micro" />
                                 <Label Text="{Binding ID}" TextColor="Black" FontSize="Micro" />
@@ -38,48 +42,49 @@
 
                             </StackLayout>-->
 
-                        </StackLayout>
-                        
-                        <StackLayout Orientation="Vertical">
-                            
+                            </StackLayout>
+
                             <StackLayout Orientation="Vertical">
+
                                 <StackLayout Orientation="Vertical">
-                                <Label Text="Title : " HorizontalOptions="StartAndExpand"/>
-                                <Label Text="{Binding title}" HorizontalOptions="Start"
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="Title : " HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding title}" HorizontalOptions="Start"
                                    TextColor="Black" HorizontalTextAlignment="Start" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="About: "/>
+                                        <Label Text="{Binding textSnippet}"/>
+                                    </StackLayout>
                                 </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                <Label Text="About: "/>
-                                <Label Text="{Binding textSnippet}"/>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Category: " FontSize="Micro" />
+                                    <Label Text="{Binding category}"  TextColor="Black" FontSize="Micro"/>
                                 </StackLayout>
-                            </StackLayout>
+                                <!--<Label Text="{Binding textSnippet}" TextColor="Black"/>-->
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Category: " FontSize="Micro" />
-                                <Label Text="{Binding category}"  TextColor="Black" FontSize="Micro"/>
-                            </StackLayout>
-                            <!--<Label Text="{Binding textSnippet}" TextColor="Black"/>-->
-
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="PDF available: " FontSize="Micro" />
-                                <Label Text="{Binding PDFAvailable}"  TextColor="Black" FontSize="Micro" />
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="ISBN number" FontSize="Micro"/>
-                                <Label Text="{Binding ISBN_number}"  TextColor="Black" FontSize="Micro" />
-                            </StackLayout>
-                            <!--<StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="PDF available: " FontSize="Micro" />
+                                    <Label Text="{Binding PDFAvailable}"  TextColor="Black" FontSize="Micro" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="ISBN number" FontSize="Micro"/>
+                                    <Label Text="{Binding ISBN_number}"  TextColor="Black" FontSize="Micro" />
+                                </StackLayout>
+                                <!--<StackLayout Orientation="Horizontal">
 
                             </StackLayout>-->
 
-                       
-                        
 
+
+
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                </ViewCell>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+    </StackLayout>
   
    </ContentPage>

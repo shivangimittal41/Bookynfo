@@ -23,6 +23,7 @@ namespace Bookynfo
         public MainPage()
         {
             InitializeComponent();
+            
         }
 
         private async void BookList_Refreshing(object sender, EventArgs e)
@@ -44,7 +45,7 @@ namespace Bookynfo
         }
 
 
-        private async Task BookFetching()
+        private async Task BookFetching(string searchText = null)
         {
             _listOfISBN.Clear();
 
@@ -89,14 +90,26 @@ namespace Bookynfo
                     //console.writeline("item links : " + item.volumeinfo.imagelinks.smallthumbnail);
                 }
 
-
-
-
                 BookList.ItemsSource = _listOfISBN;
+
+                //if (string.IsNullOrEmpty(searchText))
+                //    BookList.ItemsSource = _listOfISBN;
+                //else
+                //{
+                //    BookList.ItemsSource = _listOfISBN.Where(c => c.title.StartsWith(searchText));
+                //}
             }
         }
 
-       
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void SearchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
