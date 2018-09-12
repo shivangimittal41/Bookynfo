@@ -12,23 +12,24 @@ namespace Bookynfo
 {
     public partial class MainPage : ContentPage
     {
-        private ObservableCollection<FirstBookList_Class> _listOfISBN = new ObservableCollection<FirstBookList_Class> { };
-        protected override async void OnAppearing()
+        private ObservableCollection<FirstBookList_Class> _listOfISBN = new ObservableCollection<FirstBookList_Class>() { };
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             await BookFetching();
+            BookList.ItemsSource = _listOfISBN;
         }
-
 
         public MainPage()
         {
             InitializeComponent();
-            
+            //BookList.ItemsSource = await BookFetching();
         }
 
         private async void BookList_Refreshing(object sender, EventArgs e)
         {
             await BookFetching();
+            BookList.ItemsSource = _listOfISBN;
             BookList.EndRefresh();
         }
 
@@ -45,19 +46,16 @@ namespace Bookynfo
         }
 
 
-        private async Task BookFetching(string searchText = null)
+        private async Task<bool> BookFetching()
         {
             _listOfISBN.Clear();
+
 
             foreach (var isbn in ISBN_List_Class.GetISBN_List())
 
             {
                 FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(Convert.ToInt64(isbn));
                 
-                //Console.WriteLine("Item Count : " + listOfBooks.items.Count());
-                Console.WriteLine("Item ID : " + listOfBooks.items[0].id);
-         
-
                 foreach (var item in listOfBooks.items)
                 {
                     _listOfISBN.Add(
@@ -81,35 +79,37 @@ namespace Bookynfo
                             previewLink = (item.volumeInfo.previewLink == null) ?
                                         "not available" : Convert.ToString(item.volumeInfo.previewLink),
                             ID = item.id,
-                            ISBN_number= Convert.ToInt64(isbn),
+                            ISBN_number = Convert.ToInt64(isbn),
                             //textSnippet= item.searchInfo.textSnippet
 
 
                         }
                         );
-                    //console.writeline("item links : " + item.volumeinfo.imagelinks.smallthumbnail);
+
                 }
 
-                BookList.ItemsSource = _listOfISBN;
-
-                //if (string.IsNullOrEmpty(searchText))
-                //    BookList.ItemsSource = _listOfISBN;
-                //else
-                //{
-                //    BookList.ItemsSource = _listOfISBN.Where(c => c.title.StartsWith(searchText));
-                //}
+                               
             }
+
+            return true;
+
         }
 
-        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            BookList.ItemsSource = _listOfISBN.Where(c => c.title.ToUpper().Contains(e.NewTextValue.ToUpper()));
+            if (!BookList.ItemsSource.GetEnumerator().MoveNext())
+            {
+                DisplayAlert("Your search exists in another list", "Press Ok to go to the results", "Ok");
+            }
         }
 
         private void SearchBar_SearchButtonPressed(object sender, EventArgs e)
         {
 
         }
+
+        
     }
 }
 
