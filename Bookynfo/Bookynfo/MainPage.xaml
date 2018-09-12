@@ -10,6 +10,7 @@
     <StackLayout>
         <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged" 
                    SearchButtonPressed="SearchBar_SearchButtonPressed" IsVisible="True" />
+        <Label x:Name="Alternative" IsVisible="False" HorizontalOptions="Center"/>
 
         <ListView x:Name="BookList"
                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"

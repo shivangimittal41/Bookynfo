@@ -100,7 +100,13 @@ namespace Bookynfo
             BookList.ItemsSource = _listOfISBN.Where(c => c.title.ToUpper().Contains(e.NewTextValue.ToUpper()));
             if (!BookList.ItemsSource.GetEnumerator().MoveNext())
             {
-                DisplayAlert("Your search exists in another list", "Press Ok to go to the results", "Ok");
+                Alternative.IsVisible = true;
+                Alternative.Text = "Press Enter to look for the results";
+                //DisplayAlert("Your search exists in another list", "Press Ok to go to the results", "Ok");
+            }
+            else
+            {
+                Alternative.IsVisible = false;
             }
         }
 
