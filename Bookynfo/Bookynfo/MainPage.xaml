@@ -7,7 +7,7 @@
 
 
 
-    <StackLayout>
+    <StackLayout >
         <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged" 
                    SearchButtonPressed="SearchBar_SearchButtonPressed" IsVisible="True" />
         <StackLayout Orientation="Horizontal" BackgroundColor="LightGray" Padding="35,0,70,0">
@@ -19,9 +19,8 @@
                 <Picker.Items>
                     <x:String>All</x:String>
                     <x:String>Biography &amp; Autobiography</x:String>
-                    <x:String>C#</x:String>
-                    <x:String>JAVA</x:String>
-                    <x:String>Python</x:String>
+                    <x:String>Conduct of life</x:String>
+                    <x:String>Education</x:String>                    
                     <x:String>Computers</x:String>
 
                 </Picker.Items>
