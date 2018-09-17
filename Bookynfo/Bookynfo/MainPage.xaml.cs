@@ -24,6 +24,7 @@ namespace Bookynfo
         {
             InitializeComponent();
             //BookList.ItemsSource = await BookFetching();
+            Category.SelectedIndex = 0;
         }
 
         private async void BookList_Refreshing(object sender, EventArgs e)
@@ -114,57 +115,16 @@ namespace Bookynfo
         {
 
         }
+        private async void Category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Category.SelectedIndex == 0 || Convert.ToString(Category.SelectedItem) == "All")
+            {
+                BookList.ItemsSource = _listOfISBN;
+            }
+            BookList.ItemsSource = _listOfISBN.Where(c => c.category.Contains(Category.SelectedItem.ToString()));
+        }
+       
 
-        
     }
 }
 
-
-
-
-//_listOfISBN.Add(
-//    new FirstBookList_Class
-//    {
-//        previewLink = "1",
-//        title = "1",
-//        category = string.Join(" ", listOfBooks.items[0].volumeInfo.categories),
-//        PDFAvailable = true,
-//        smallthumbnail = "1"
-//    }
-//    );
-
-//_listOfISBN.Add(
-//        new FirstBookList_Class
-//        {
-
-//            smallthumbnail = (listOfBooks.items[0].volumeInfo.imageLinks.smallThumbnail == null)?
-//           "Null value": Convert.ToString(listOfBooks.items[0].volumeInfo.imageLinks.smallThumbnail),
-
-//            category = (listOfBooks.items[0].volumeInfo.categories == null)?
-//            "cant access":string.Join(" ", listOfBooks.items[0].volumeInfo.categories),
-
-//            PDFAvailable = (listOfBooks.items[0].accessInfo.pdf.isAvailable == false)?
-//            false: Convert.ToBoolean(listOfBooks.items[0].accessInfo.pdf.isAvailable),
-
-//            title = (listOfBooks.items[0].volumeInfo.title == null)?
-//            "not available":Convert.ToString(listOfBooks.items[0].volumeInfo.title),
-
-//            previewLink = (listOfBooks.items[0].volumeInfo.previewLink == null)?
-//            "not available":Convert.ToString(listOfBooks.items[0].volumeInfo.previewLink)
-//        }
-//        );
-
-
-//foreach (var item in listOfBooks.items)
-//{
-//    _listOfISBN.Add(
-//        new FirstBookList_Class
-//        {
-//            smallthumbnail = Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
-
-//            category = string.Join(" ", item.volumeInfo.categories),
-
-//            PDFAvailable = Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
-//            title = Convert.ToString(item.volumeInfo.title),
-//            previewLink = Convert.ToString(item.volumeInfo.previewLink),
-//            ID= item.id

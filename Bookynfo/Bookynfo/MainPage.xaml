@@ -10,6 +10,25 @@
     <StackLayout>
         <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged" 
                    SearchButtonPressed="SearchBar_SearchButtonPressed" IsVisible="True" />
+        <StackLayout Orientation="Horizontal" BackgroundColor="LightGray" Padding="35,0,70,0">
+            <Label Text="Selected category: " FontSize="Medium" HeightRequest="30" HorizontalOptions="StartAndExpand" Margin="0,7,0,0"/>
+            <Picker 
+            x:Name="Category" HeightRequest="30" HorizontalOptions="EndAndExpand" WidthRequest="80" FontSize="Small"
+                SelectedIndexChanged="Category_SelectedIndexChanged"
+                >
+                <Picker.Items>
+                    <x:String>All</x:String>
+                    <x:String>Biography &amp; Autobiography</x:String>
+                    <x:String>C#</x:String>
+                    <x:String>JAVA</x:String>
+                    <x:String>Python</x:String>
+                    <x:String>Computers</x:String>
+
+                </Picker.Items>
+
+            </Picker>
+
+        </StackLayout>
         <Label x:Name="Alternative" IsVisible="False" HorizontalOptions="Center"/>
 
         <ListView x:Name="BookList"
