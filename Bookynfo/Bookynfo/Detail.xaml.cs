@@ -33,40 +33,48 @@ namespace Bookynfo
 
         private async Task BookDeatilsFetching()
         {
-            Clicked_RootObject detailsOfBooks = await ClickedScreen_class.GetClicked_details();
+            Clicked_RootObject detailsOfBooks = await ClickedScreen_class.GetClicked_details(App.SelectedBookNumber, "ISBN");
             _DetailsofBook.Clear();
             foreach( var item in detailsOfBooks.items)
             {
-                BookTitle.Text = (string.IsNullOrEmpty(item.volumeInfo.title) ?
-                    "Not available" : item.volumeInfo.title);
+                try
+                {
+                    BookTitle.Text = (string.IsNullOrEmpty(item.volumeInfo.title) ?
+                   "Not available" : item.volumeInfo.title);
 
-                BookImage.Source = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.thumbnail)?
-                    "Not available" : item.volumeInfo.imageLinks.thumbnail);
+                    BookImage.Source = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.thumbnail) ?
+                        "Not available" : item.volumeInfo.imageLinks.thumbnail);
 
-                
-                //Bookid.Text = (string.IsNullOrEmpty(Convert.ToString(item.id)) ?
-                //    "Not available" : Convert.ToString(item.id));
 
-                PDFavailable.Text = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable)) ?
-                    "Not available" : Convert.ToString(item.accessInfo.pdf.isAvailable)); 
+                    //Bookid.Text = (string.IsNullOrEmpty(Convert.ToString(item.id)) ?
+                    //    "Not available" : Convert.ToString(item.id));
 
-                Booklanguage.Text = (string.IsNullOrEmpty(item.volumeInfo.language) ?
-                    "Not available" : item.volumeInfo.language); 
+                    PDFavailable.Text = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable)) ?
+                        "Not available" : Convert.ToString(item.accessInfo.pdf.isAvailable));
 
-                BookaverageRating.Text = (string.IsNullOrEmpty(Convert.ToString(item.volumeInfo.averageRating)) ?
-                    "Not available" : Convert.ToString(item.volumeInfo.averageRating));
-               
-                BookpageCount.Text = (string.IsNullOrEmpty(Convert.ToString(item.volumeInfo.pageCount)) ?
-                    "Not available" : Convert.ToString(item.volumeInfo.pageCount));
-               
-                BookDescription.Text = (string.IsNullOrEmpty(item.volumeInfo.description) ?
-                    "Not available" : item.volumeInfo.description);
-               
-                Bookauhtor.Text = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.authors)) ?
-                    "Not available" : String.Join(" ", item.volumeInfo.authors));
-                
+                    Booklanguage.Text = (string.IsNullOrEmpty(item.volumeInfo.language) ?
+                        "Not available" : item.volumeInfo.language);
 
-              
+                    BookaverageRating.Text = (string.IsNullOrEmpty(Convert.ToString(item.volumeInfo.averageRating)) ?
+                        "Not available" : Convert.ToString(item.volumeInfo.averageRating));
+
+                    BookpageCount.Text = (string.IsNullOrEmpty(Convert.ToString(item.volumeInfo.pageCount)) ?
+                        "Not available" : Convert.ToString(item.volumeInfo.pageCount));
+
+                    BookDescription.Text = (string.IsNullOrEmpty(item.volumeInfo.description) ?
+                        "Not available" : item.volumeInfo.description);
+
+                    Bookauhtor.Text = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.authors)) ?
+                        "Not available" : String.Join(" ", item.volumeInfo.authors));
+                    ISBN.Text = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier)) ?
+                        "Not available" : String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier));
+                }
+                catch (Exception)
+                {
+                    continue;
+                    //throw;
+                }
+                            
     }
 
         }

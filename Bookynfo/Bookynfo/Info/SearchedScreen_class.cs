@@ -10,41 +10,25 @@ using Newtonsoft.Json;
 
 namespace Bookynfo.Info
 {
-    class ClickedScreen_class
+    class SearchedScreen_class
     {
-        public async static Task<Clicked_RootObject> GetClicked_details(string ID, string SearchType)
-           
+        public async static Task<Searched_RootObject> GetClicked_details()
+
         {
-            var url = "";
             var http = new HttpClient();
-            if (SearchType == "ISBN")
-            {
-                url = App.URL + "isbn" + ":" + ID;
-            }
-            else
-            {
-                url = App.URL + ID.Replace(" ", "%20");
-            }
-            
-           
 
-            var response = await http.GetAsync(url);
-           
+            var response = await http.GetAsync(App.URL +  App.SearchBookName.Replace(" ", "%20"));
+            //Console.WriteLine("URL MERA Choice : " + App.primaryDomain + "/" + App.currentSelectedSurveyID + "/pages/" + App.currentSelectedPageID + "/questions/" + App.currentQID);
             var result = await response.Content.ReadAsStringAsync();
+            var Serializer = new DataContractJsonSerializer(typeof(Searched_RootObject));
 
-            Clicked_RootObject data = JsonConvert.DeserializeObject<Clicked_RootObject>(result);
-            //var Serializer = new DataContractJsonSerializer(typeof(Clicked_RootObject));
-
-            //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            //var data = (Clicked_RootObject)Serializer.ReadObject(ms);
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (Searched_RootObject)Serializer.ReadObject(ms);
 
             return data;
         }
-
-      
     }
-    //[DataContract]
-    public class Clicked_IndustryIdentifier
+    public class Searched_IndustryIdentifier
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -54,7 +38,7 @@ namespace Bookynfo.Info
         public string identifier { get; set; }
     }
     //[DataContract]
-    public class Clicked_ReadingModes
+    public class Searched_ReadingModes
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -64,7 +48,7 @@ namespace Bookynfo.Info
         public bool image { get; set; }
     }
     //[DataContract]
-    public class Clicked_ImageLinks
+    public class Searched_ImageLinks
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -74,7 +58,7 @@ namespace Bookynfo.Info
         public string thumbnail { get; set; }
     }
     //[DataContract]
-    public class Clicked_VolumeInfo
+    public class Searched_VolumeInfo
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -93,10 +77,10 @@ namespace Bookynfo.Info
         public string description { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Clicked_IndustryIdentifier> industryIdentifiers { get; set; }
+        public List<Searched_IndustryIdentifier> industryIdentifiers { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Clicked_ReadingModes readingModes { get; set; }
+        public Searched_ReadingModes readingModes { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int pageCount { get; set; }
@@ -104,11 +88,11 @@ namespace Bookynfo.Info
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string printType { get; set; }
         //[DataMember]
-        [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> categories { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public decimal averageRating { get; set; }
+        public int averageRating { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int ratingsCount { get; set; }
@@ -123,7 +107,7 @@ namespace Bookynfo.Info
         public string contentVersion { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Clicked_ImageLinks imageLinks { get; set; }
+        public Searched_ImageLinks imageLinks { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string language { get; set; }
@@ -138,7 +122,7 @@ namespace Bookynfo.Info
         public string canonicalVolumeLink { get; set; }
     }
     //[DataContract]
-    public class Clicked_SaleInfo
+    public class Searched_SaleInfo
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -151,21 +135,21 @@ namespace Bookynfo.Info
         public bool isEbook { get; set; }
     }
     //[DataContract]
-    public class Clicked_Epub
+    public class Searched_Epub
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool isAvailable { get; set; }
     }
     //[DataContract]
-    public class Clicked_Pdf
+    public class Searched_Pdf
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool isAvailable { get; set; }
     }
     //[DataContract]
-    public class Clicked_AccessInfo
+    public class Searched_AccessInfo
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -199,14 +183,14 @@ namespace Bookynfo.Info
         public bool quoteSharingAllowed { get; set; }
     }
     //[DataContract]
-    public class Clicked_SearchInfo
+    public class Searched_SearchInfo
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string textSnippet { get; set; }
     }
     //[DataContract]
-    public class Clicked_Item
+    public class Searched_Item
     {
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -222,25 +206,26 @@ namespace Bookynfo.Info
         public string selfLink { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Clicked_VolumeInfo volumeInfo { get; set; }
+        public Searched_VolumeInfo volumeInfo { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Clicked_SaleInfo saleInfo { get; set; }
+        public Searched_SaleInfo saleInfo { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Clicked_AccessInfo accessInfo { get; set; }
+        public Searched_AccessInfo accessInfo { get; set; }
         //[DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Clicked_SearchInfo searchInfo { get; set; }
+        public Searched_SearchInfo searchInfo { get; set; }
     }
     //[DataContract]
-    public class Clicked_RootObject
+    public class Searched_RootObject
     {
         //[DataMember]
         public string kind { get; set; }
         //[DataMember]
         public int totalItems { get; set; }
         //[DataMember]
-        public List<Clicked_Item> items { get; set; }
+        public List<Searched_Item> items { get; set; }
     }
+
 }

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Info\SearchedScreen_class.cs" />
+    <Compile Remove="LocalData\SearchedPage_Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CarouselView" Version="7.0.3.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.561731" />

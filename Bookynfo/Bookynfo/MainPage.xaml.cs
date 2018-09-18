@@ -13,6 +13,7 @@ namespace Bookynfo
     public partial class MainPage : ContentPage
     {
         private ObservableCollection<FirstBookList_Class> _listOfISBN = new ObservableCollection<FirstBookList_Class>() { };
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -44,6 +45,7 @@ namespace Bookynfo
             App.SelectedBookNumber = selectedBookNumber.ISBN_number;
             await Navigation.PushAsync(new Detail());
             BookList.SelectedItem = null;
+            
         }
 
 
@@ -55,11 +57,13 @@ namespace Bookynfo
             foreach (var isbn in ISBN_List_Class.GetISBN_List())
 
             {
-                FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(Convert.ToInt64(isbn));
-                
+                FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(Convert.ToString(isbn), "ISBN");
+
                 foreach (var item in listOfBooks.items)
                 {
-                    _listOfISBN.Add(
+                    try
+                    {
+                        _listOfISBN.Add(
                         new FirstBookList_Class
                         {
 
@@ -80,16 +84,24 @@ namespace Bookynfo
                             previewLink = (item.volumeInfo.previewLink == null) ?
                                         "not available" : Convert.ToString(item.volumeInfo.previewLink),
                             ID = item.id,
-                            ISBN_number = Convert.ToInt64(isbn),
-                            //textSnippet= item.searchInfo.textSnippet
+                            ISBN_number = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier)) ?
+                                "Not available" : String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier))
+                        //ISBN_number = Convert.ToString(isbn)
+                        //textSnippet= item.searchInfo.textSnippet
 
 
-                        }
+                    }
                         );
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
 
                 }
 
-                               
+
             }
 
             return true;
@@ -111,10 +123,6 @@ namespace Bookynfo
             }
         }
 
-        private void SearchBar_SearchButtonPressed(object sender, EventArgs e)
-        {
-
-        }
         private async void Category_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Category.SelectedIndex == 0 || Convert.ToString(Category.SelectedItem) == "All")
@@ -123,8 +131,65 @@ namespace Bookynfo
             }
             BookList.ItemsSource = _listOfISBN.Where(c => c.category.Contains(Category.SelectedItem.ToString()));
         }
+
+        private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+            await SearchedBookFetch(SearchBar.Text);
+            BookList.ItemsSource = _listOfISBN;
+
+        }
        
 
+        private async Task SearchedBookFetch(string searchText)
+        {
+            FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(searchText, "Text");
+            _listOfISBN.Clear();
+            foreach (var item in listOfBooks.items)
+            {
+                try
+                {
+
+                    _listOfISBN.Add(
+                   new FirstBookList_Class
+                   {
+
+                       smallthumbnail = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.smallThumbnail)) ?
+                                  "Null value" : Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
+
+                       category = (string.IsNullOrEmpty(string.Join(" ", item.volumeInfo.categories))) ?
+                                   "cant access" : string.Join(" ", item.volumeInfo.categories),
+
+                       PDFAvailable = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable))) ?
+                                   false : Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
+
+                       title = (string.IsNullOrEmpty(item.volumeInfo.title)) ?
+                                   "not available" : Convert.ToString(item.volumeInfo.title).Trim(),
+                       textSnippet = (string.IsNullOrEmpty(Convert.ToString(item.searchInfo.textSnippet))) ?
+                                       "Not available" : Convert.ToString(item.searchInfo.textSnippet),
+                        //textSnippet= item.searchInfo.textSnippet,
+                        previewLink = (item.volumeInfo.previewLink == null) ?
+                                   "not available" : Convert.ToString(item.volumeInfo.previewLink),
+                       ID = item.id,
+                       ISBN_number = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier)) ?
+                                "Not available" : String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier))
+                       //textSnippet= item.searchInfo.textSnippet
+
+
+                   }
+                   );
+                }
+                catch (Exception)
+                {
+                    continue;
+                    //throw;
+                }
+
+            }
+
+
+        }
+
     }
+   
 }
 

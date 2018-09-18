@@ -8,7 +8,7 @@
 
 
     <StackLayout >
-        <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged" 
+        <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged" x:Name="SearchBar"
                    SearchButtonPressed="SearchBar_SearchButtonPressed" IsVisible="True" />
         <StackLayout Orientation="Horizontal" BackgroundColor="LightGray" Padding="35,0,70,0">
             <Label Text="Selected category: " FontSize="Medium" HeightRequest="30" HorizontalOptions="StartAndExpand" Margin="0,7,0,0"/>

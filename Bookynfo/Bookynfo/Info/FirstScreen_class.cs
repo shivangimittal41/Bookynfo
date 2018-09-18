@@ -8,41 +8,39 @@ using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Bookynfo.LocalData;
+
 namespace Bookynfo.Info
 {
     class FirstScreen_class
     {
-        public async static Task<FirstRootObject> GetFirst_details(long ISBN)
+        public async static Task<FirstRootObject> GetFirst_details(string ID , string SearchType)
         {
+            var url = "";
             var http = new HttpClient();
-
-            var response = await http.GetAsync(App.URL + ":" + ISBN);
+            if (SearchType == "ISBN")
+            {
+                url = App.URL + "isbn" + ":" + ID;
+            }
+            else
+            {
+                url = App.URL + ID.Replace(" ", "%20");
+            }
+              
+            var response = await http.GetAsync(url);
             //Console.WriteLine("URL MERA Choice : " + App.primaryDomain + "/" + App.currentSelectedSurveyID + "/pages/" + App.currentSelectedPageID + "/questions/" + App.currentQID);
             var result = await response.Content.ReadAsStringAsync();
-            var Serializer = new DataContractJsonSerializer(typeof(FirstRootObject));
+            FirstRootObject data = JsonConvert.DeserializeObject<FirstRootObject>(result);
 
-            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            var data = (FirstRootObject)Serializer.ReadObject(ms);
+            //var Serializer = new DataContractJsonSerializer(typeof(FirstRootObject));
+
+            //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            //var data = (FirstRootObject)Serializer.ReadObject(ms);
 
             return data;
         }
     }
-
-
-
-//public class IndustryIdentifier
-//{
-//    public string type { get; set; }
-//    public string identifier { get; set; }
-//}
-
-//public class ReadingModes
-//{
-//    public bool text { get; set; }
-//    public bool image { get; set; }
-//}
-
-        
+          
         public class ImageLinks
     {
            
@@ -51,31 +49,30 @@ namespace Bookynfo.Info
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string thumbnail { get; set; }
     }
-    //[DataContract]
+    public class IndustryIdentifier
+    {
+      
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string type { get; set; }
+  
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string identifier { get; set; }
+    }
     public class VolumeInfo
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        //[DataMember]
+      
         public string title { get; set; }
-        //[DataMember]
+    
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> authors { get; set; }
-        //public string publisher { get; set; }
-        //public string publishedDate { get; set; }
-        //public string description { get; set; }
-        //public List<IndustryIdentifier> industryIdentifiers { get; set; }
-        //public ReadingModes readingModes { get; set; }
-        //public int pageCount { get; set; }
-        //public string printType { get; set; }
-        //[DataMember]
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<IndustryIdentifier> industryIdentifiers { get; set; }
+      
+        [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> categories { get; set; }
-        //public double averageRating { get; set; }
-        //public int ratingsCount { get; set; }
-        //public string maturityRating { get; set; }
-        //public bool allowAnonLogging { get; set; }
-        //public string contentVersion { get; set; }
-        //[DataMember]
+  
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ImageLinks imageLinks { get; set; }
         //public string language { get; set; }
@@ -86,19 +83,7 @@ namespace Bookynfo.Info
         //public string canonicalVolumeLink { get; set; }
     }
 
-    //public class SaleInfo
-    //{
-    //    public string country { get; set; }
-    //    public string saleability { get; set; }
-    //    public bool isEbook { get; set; }
-    //}
-
-    //public class Epub
-    //{
-    //    public bool isAvailable { get; set; }
-    //}
-
-    //[DataContract]
+  
     public class Pdf
     {
         //[DataMember]
@@ -109,19 +94,10 @@ namespace Bookynfo.Info
     public class AccessInfo
     {
 
-        //    public string country { get; set; }
-        //    public string viewability { get; set; }
-        //    public bool embeddable { get; set; }
-        //    public bool publicDomain { get; set; }
-        //    public string textToSpeechPermission { get; set; }
-        //    public Epub epub { get; set; }
-
-        //[DataMember]
+      
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Pdf pdf { get; set; }
-    //    public string webReaderLink { get; set; }
-    //    public string accessViewStatus { get; set; }
-    //    public bool quoteSharingAllowed { get; set; }
+  
     }
 
     public class SearchInfo
@@ -161,7 +137,7 @@ namespace Bookynfo.Info
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int totalItems { get; set; }
         //[DataMember]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty( NullValueHandling = NullValueHandling.Ignore)]
         public List<Item> items { get; set; }
     }
 }

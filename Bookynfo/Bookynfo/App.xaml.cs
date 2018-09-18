@@ -8,8 +8,9 @@ namespace Bookynfo
    
     public partial class App : Application
 	{
-        public static string URL = " https://www.googleapis.com/books/v1/volumes?q=isbn";
-        public static long SelectedBookNumber;
+        public static string URL = " https://www.googleapis.com/books/v1/volumes?q=";
+        public static string SelectedBookNumber;
+        //public static string SearchBookName;
         //public static int ISBN;
         public App ()
 		{

@@ -15,6 +15,10 @@
                 <Label x:Name="BookDescription" FontSize="Medium" TextColor="Black" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" >
+                <Label Text="ISBN : " FontSize="Small" TextColor="DarkSlateGray" />
+                <Label x:Name="ISBN" FontSize="Small" TextColor="Black" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
                 <Label Text="Rating : " FontSize="Small" TextColor="DarkSlateGray" />
                 <Label x:Name="BookaverageRating" FontSize="Small" TextColor="Black" />
             </StackLayout>
