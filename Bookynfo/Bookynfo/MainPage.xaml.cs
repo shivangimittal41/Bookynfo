@@ -19,6 +19,9 @@ namespace Bookynfo
             base.OnAppearing();
             await BookFetching();
             BookList.ItemsSource = _listOfISBN;
+            Alternative.IsVisible = false;
+            ////SearchBar.Text = null;
+            //SearchBar.Text = "";
         }
 
         public MainPage()
@@ -86,8 +89,8 @@ namespace Bookynfo
                             ID = item.id,
                             ISBN_number = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier)) ?
                                 "Not available" : String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier))
-                        //ISBN_number = Convert.ToString(isbn)
-                        //textSnippet= item.searchInfo.textSnippet
+                            //ISBN_number = Convert.ToString(isbn)
+                            //textSnippet= item.searchInfo.textSnippet
 
 
                     }
@@ -110,6 +113,9 @@ namespace Bookynfo
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (string.IsNullOrEmpty(e.NewTextValue))
+                return;
+
             BookList.ItemsSource = _listOfISBN.Where(c => c.title.ToUpper().Contains(e.NewTextValue.ToUpper()));
             if (!BookList.ItemsSource.GetEnumerator().MoveNext())
             {
@@ -129,6 +135,7 @@ namespace Bookynfo
             {
                 BookList.ItemsSource = _listOfISBN;
             }
+            else
             BookList.ItemsSource = _listOfISBN.Where(c => c.category.Contains(Category.SelectedItem.ToString()));
         }
 
@@ -136,7 +143,8 @@ namespace Bookynfo
         {
             await SearchedBookFetch(SearchBar.Text);
             BookList.ItemsSource = _listOfISBN;
-
+            SearchBar.Text = "";
+            Alternative.IsVisible = false;
         }
        
 
@@ -166,7 +174,7 @@ namespace Bookynfo
                                    "not available" : Convert.ToString(item.volumeInfo.title).Trim(),
                        textSnippet = (string.IsNullOrEmpty(Convert.ToString(item.searchInfo.textSnippet))) ?
                                        "Not available" : Convert.ToString(item.searchInfo.textSnippet),
-                        //textSnippet= item.searchInfo.textSnippet,
+                        
                         previewLink = (item.volumeInfo.previewLink == null) ?
                                    "not available" : Convert.ToString(item.volumeInfo.previewLink),
                        ID = item.id,
@@ -181,7 +189,7 @@ namespace Bookynfo
                 catch (Exception)
                 {
                     continue;
-                    //throw;
+                   
                 }
 
             }

@@ -30,7 +30,7 @@ namespace Bookynfo
 			InitializeComponent ();
 		}
 
-
+       
         private async Task BookDeatilsFetching()
         {
             Clicked_RootObject detailsOfBooks = await ClickedScreen_class.GetClicked_details(App.SelectedBookNumber, "ISBN");
@@ -72,7 +72,7 @@ namespace Bookynfo
                 catch (Exception)
                 {
                     continue;
-                    //throw;
+                
                 }
                             
     }

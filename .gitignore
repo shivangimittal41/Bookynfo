@@ -3,3 +3,13 @@
 .vs/Bookynfo/v15/Server/sqlite3/storage.ide
 .vs/Bookynfo/v15/Server/sqlite3/db.lock
 .vs/Bookynfo/DesignTimeBuild/.dtbcache
+
+
+Bookynfo/Bookynfo/bin
+Bookynfo/Bookynfo/obj
+Bookynfo/Bookynfo.Android/bin
+Bookynfo/Bookynfo.Android/obj
+Bookynfo/Bookynfo.iOS/bin
+Bookynfo/Bookynfo.iOS/obj
+Bookynfo/Bookynfo.UWP/bin
+Bookynfo/Bookynfo.UWP/obj
