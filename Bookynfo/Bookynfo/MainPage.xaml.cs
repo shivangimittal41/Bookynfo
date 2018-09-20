@@ -20,6 +20,7 @@ namespace Bookynfo
             await BookFetching();
             BookList.ItemsSource = _listOfISBN;
             Alternative.IsVisible = false;
+            Category.SelectedIndex = 0;
             ////SearchBar.Text = null;
             //SearchBar.Text = "";
         }
@@ -28,7 +29,7 @@ namespace Bookynfo
         {
             InitializeComponent();
             //BookList.ItemsSource = await BookFetching();
-            Category.SelectedIndex = 0;
+            //Category.SelectedIndex = 0;
         }
 
         private async void BookList_Refreshing(object sender, EventArgs e)
@@ -48,7 +49,8 @@ namespace Bookynfo
             App.SelectedBookNumber = selectedBookNumber.ISBN_number;
             await Navigation.PushAsync(new Detail());
             BookList.SelectedItem = null;
-            
+            SearchBar.Text = "";
+
         }
 
 
@@ -141,10 +143,12 @@ namespace Bookynfo
 
         private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
         {
-            await SearchedBookFetch(SearchBar.Text);
+            await SearchedBookFetch(Convert.ToString(SearchBar.Text));
             BookList.ItemsSource = _listOfISBN;
-            SearchBar.Text = "";
+            //SearchBar.Text = "";
             Alternative.IsVisible = false;
+            Category.SelectedIndex = 0;
+            //Category.SelectedItem = "All";
         }
        
 
