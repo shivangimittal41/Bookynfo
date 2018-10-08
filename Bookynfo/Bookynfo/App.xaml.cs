@@ -16,8 +16,8 @@ namespace Bookynfo
 		{
 			InitializeComponent();
 
-            //MainPage = new MainPage();
-            MainPage = new NavigationPage(new WelcomeScreen());
+            MainPage = new MainPage();
+            //MainPage = new NavigationPage(new WelcomeScreen());
 
         }
 

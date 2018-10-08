@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookynfo.iOS", "Bookynfo\Bo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookynfo.UWP", "Bookynfo\Bookynfo.UWP\Bookynfo.UWP.csproj", "{D2803FC0-6477-42B7-9051-C13D25A6746C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookynfo", "Bookynfo\Bookynfo\Bookynfo.csproj", "{BAF625B7-3E5C-458B-8EAE-10BBE743E8FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookynfo", "Bookynfo\Bookynfo\Bookynfo.csproj", "{BAF625B7-3E5C-458B-8EAE-10BBE743E8FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
