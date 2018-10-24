@@ -156,47 +156,53 @@ namespace Bookynfo
         {
             FirstRootObject listOfBooks = await FirstScreen_class.GetFirst_details(searchText, "Text");
             _listOfISBN.Clear();
-            foreach (var item in listOfBooks.items)
+            if (listOfBooks.totalItems != 0)
             {
-                try
+                foreach (var item in listOfBooks.items)
                 {
+                    try
+                    {
 
-                    _listOfISBN.Add(
-                   new FirstBookList_Class
-                   {
+                        _listOfISBN.Add(
+                       new FirstBookList_Class
+                       {
 
-                       smallthumbnail = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.smallThumbnail)) ?
-                                  "Null value" : Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
+                           smallthumbnail = (string.IsNullOrEmpty(item.volumeInfo.imageLinks.smallThumbnail)) ?
+                                      "Null value" : Convert.ToString(item.volumeInfo.imageLinks.smallThumbnail),
 
-                       category = (string.IsNullOrEmpty(string.Join(" ", item.volumeInfo.categories))) ?
-                                   "cant access" : string.Join(" ", item.volumeInfo.categories),
+                           category = (string.IsNullOrEmpty(string.Join(" ", item.volumeInfo.categories))) ?
+                                       "cant access" : string.Join(" ", item.volumeInfo.categories),
 
-                       PDFAvailable = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable))) ?
-                                   false : Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
+                           PDFAvailable = (string.IsNullOrEmpty(Convert.ToString(item.accessInfo.pdf.isAvailable))) ?
+                                       false : Convert.ToBoolean(item.accessInfo.pdf.isAvailable),
 
-                       title = (string.IsNullOrEmpty(item.volumeInfo.title)) ?
-                                   "not available" : Convert.ToString(item.volumeInfo.title).Trim(),
-                       textSnippet = (string.IsNullOrEmpty(Convert.ToString(item.searchInfo.textSnippet))) ?
-                                       "Not available" : Convert.ToString(item.searchInfo.textSnippet),
-                        
-                        previewLink = (item.volumeInfo.previewLink == null) ?
-                                   "not available" : Convert.ToString(item.volumeInfo.previewLink),
-                       ID = item.id,
-                       ISBN_number = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier)) ?
-                                "Not available" : String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier))
-                       //textSnippet= item.searchInfo.textSnippet
+                           title = (string.IsNullOrEmpty(item.volumeInfo.title)) ?
+                                       "not available" : Convert.ToString(item.volumeInfo.title).Trim(),
+                           textSnippet = (string.IsNullOrEmpty(Convert.ToString(item.searchInfo.textSnippet))) ?
+                                           "Not available" : Convert.ToString(item.searchInfo.textSnippet),
+
+                           previewLink = (item.volumeInfo.previewLink == null) ?
+                                       "not available" : Convert.ToString(item.volumeInfo.previewLink),
+                           ID = item.id,
+                           ISBN_number = (string.IsNullOrEmpty(String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier)) ?
+                                    "Not available" : String.Join(" ", item.volumeInfo.industryIdentifiers[0].identifier))
+                           //textSnippet= item.searchInfo.textSnippet
 
 
-                   }
-                   );
-                }
-                catch (Exception)
-                {
-                    continue;
-                   
+                       }
+                       );
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+
+                    }
+
                 }
 
             }
+            else
+               await DisplayAlert("Result not found", "Please try another/valid search", "ok");
 
 
         }
