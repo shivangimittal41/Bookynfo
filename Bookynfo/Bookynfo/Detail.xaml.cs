@@ -22,7 +22,7 @@ namespace Bookynfo
         {
             base.OnAppearing();
             
-            await BookDeatilsFetching();
+            await BookDetailsFetching();
         }
 
         public Detail ()
@@ -31,7 +31,7 @@ namespace Bookynfo
 		}
 
        
-        private async Task BookDeatilsFetching()
+        private async Task BookDetailsFetching()
         {
             Clicked_RootObject detailsOfBooks = await ClickedScreen_class.GetClicked_details(App.SelectedBookNumber, "ISBN");
             _DetailsofBook.Clear();

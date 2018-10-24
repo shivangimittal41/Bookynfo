@@ -8,7 +8,7 @@ namespace Bookynfo
    
     public partial class App : Application
 	{
-        public static string URL = " https://www.googleapis.com/books/v1/volumes?q=";
+        public static string URL = "https://www.googleapis.com/books/v1/volumes?q=";
         public static string SelectedBookNumber;
         //public static string SearchBookName;
         //public static int ISBN;
@@ -16,8 +16,8 @@ namespace Bookynfo
 		{
 			InitializeComponent();
 
-            MainPage = new MainPage();
-            //MainPage = new NavigationPage(new WelcomeScreen());
+            //MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
 
         }
 
